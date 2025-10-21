@@ -97,7 +97,7 @@ return {
 			-- Default for new branch name prompts
 			initial_branch_name = "",
 			-- Change the default way of opening neogit
-			kind = "tab",
+			kind = "split",
 			-- Floating window style
 			floating = {
 				relative = "editor",
