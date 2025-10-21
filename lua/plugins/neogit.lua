@@ -142,7 +142,7 @@ return {
 				},
 			},
 			commit_editor = {
-				kind = "tab",
+				kind = "split",
 				show_staged_diff = true,
 				-- Accepted values:
 				-- "split" to show the staged diff below the commit editor
@@ -154,7 +154,7 @@ return {
 				spell_check = true,
 			},
 			commit_select_view = {
-				kind = "tab",
+				kind = "split",
 			},
 			commit_view = {
 				kind = "vsplit",
