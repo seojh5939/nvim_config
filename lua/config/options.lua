@@ -18,6 +18,7 @@ opt.number = true
 opt.relativenumber = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
+opt.showtabline = 2 -- 항상 탭바 표시 (0: 숨김, 1: 2개 이상일때, 2: 항상)
 
 -- etc
 opt.encoding = "UTF-8"
@@ -25,3 +26,5 @@ opt.cmdheight = 1
 opt.scrolloff = 10
 opt.mouse:append("a")
 opt.clipboard = "unnamedplus"
+-- tab
+opt.termguicolors = true
