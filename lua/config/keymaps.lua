@@ -19,7 +19,10 @@ mapKey(">", ">gv", "v")
 -- neoVim 종료
 mapKey("<leader>q", ":qa<cr>") -- 모든 창 닫기
 mapKey("<leader>Q", ":qa!<cr>") -- 강제 종료
-mapKey("<leader>w", ":qwa<cr>") -- 저장하고 종료
+mapKey("<leader>w", ":wqa<cr>") -- 저장하고 종료
+
+-- 복사
+mapKey("ya", ":%y<cr>") -- 파일 text 전체복사
 
 -- nvim-ufo
 -- za: 접기/펼치기

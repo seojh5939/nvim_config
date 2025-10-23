@@ -97,7 +97,7 @@ return {
 			-- Default for new branch name prompts
 			initial_branch_name = "",
 			-- Change the default way of opening neogit
-			kind = "split",
+			kind = "floating", -- "split", "split_above", "vsplit", "floating", "tab", "replace", "auto"
 			-- Floating window style
 			floating = {
 				relative = "editor",
@@ -142,7 +142,7 @@ return {
 				},
 			},
 			commit_editor = {
-				kind = "split",
+				kind = "floating",
 				show_staged_diff = true,
 				-- Accepted values:
 				-- "split" to show the staged diff below the commit editor
@@ -154,35 +154,35 @@ return {
 				spell_check = true,
 			},
 			commit_select_view = {
-				kind = "split",
+				kind = "floating",
 			},
 			commit_view = {
-				kind = "vsplit",
+				kind = "floating",
 				verify_commit = vim.fn.executable("gpg") == 1, -- Can be set to true or false, otherwise we try to find the binary
 			},
 			log_view = {
-				kind = "tab",
+				kind = "floating",
 			},
 			rebase_editor = {
-				kind = "auto",
+				kind = "floating",
 			},
 			reflog_view = {
-				kind = "tab",
+				kind = "floating",
 			},
 			merge_editor = {
-				kind = "auto",
+				kind = "floating",
 			},
 			preview_buffer = {
 				kind = "floating_console",
 			},
 			popup = {
-				kind = "split",
+				kind = "floating",
 			},
 			stash = {
-				kind = "tab",
+				kind = "floating",
 			},
 			refs_view = {
-				kind = "tab",
+				kind = "floating",
 			},
 			signs = {
 				-- { CLOSED, OPENED }
