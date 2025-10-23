@@ -21,7 +21,7 @@ return {
 			terminal_mappings = true,
 			persist_size = true,
 			persist_mode = true,
-			direction = "tab", -- "vertical", "horizontal", "tab", "float" 중 선택
+			direction = "float", -- "vertical", "horizontal", "tab", "float" 중 선택
 			close_on_exit = true,
 			shell = vim.o.shell,
 			auto_scroll = true,
@@ -37,11 +37,21 @@ return {
 			},
 		})
 
+		-- react-native 개발용(metro 서버 전용)
+		local newTerm = require("utils.newToggleTerm").newTerm
+		mapKey("<leader>yd", function()
+			newTerm(5)
+		end, "n", { desc = "Toggle Metro Server" })
+
+		-- LLM 실행용(Claude Code or gemini 등..)
+		mapKey("<leader>lm", function()
+			newTerm(10)
+		end, "n", { desc = "Toggle LLM" })
+
 		-- 터미널 토글 키맵 (숫자 + <c-t>로 여러 터미널 관리)
 		mapKey("<c-t>", "<Cmd>exe v:count1 . 'ToggleTerm'<CR>", "n", { desc = "Toggle Terminal" })
 
 		-- 터미널 모드에서 노말 모드로 나가기
-		mapKey("<Esc>", [[<C-\><C-n>]], "t", { desc = "Exit terminal mode" })
 		mapKey("jk", [[<C-\><C-n>]], "t", { desc = "Exit terminal mode" })
 
 		-- 터미널 모드에서 탭 이동

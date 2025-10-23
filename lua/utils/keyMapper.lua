@@ -1,5 +1,5 @@
 local keyMapper = function(from, to, mode, opts)
-	local options = {noremap = true, silent = true}
+	local options = { noremap = true, silent = true }
 	mode = mode or "n"
 
 	if opts then
