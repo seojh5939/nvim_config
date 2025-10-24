@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	config = function()
 		require("kanagawa").setup({
-			theme = "dragon", -- wave, dragon, lotus
+			theme = "lotus", -- wave, dragon, lotus
 		})
 		vim.cmd([[colorscheme kanagawa]])
 	end,
