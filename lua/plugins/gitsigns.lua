@@ -1,9 +1,12 @@
+local mapKey = require("utils.keyMapper").mapKey
+
 return {
 	"lewis6991/gitsigns.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- gitsigns.nvim depends on plenary.nvim
 	},
 	config = function()
+		local gitsigns = require("gitsigns")
 		require("gitsigns").setup({
 			signs = {
 				add = { text = "┃" },
@@ -52,6 +55,33 @@ return {
 				row = 0,
 				col = 1,
 			},
+
+			-- Navigation
+			mapKey("]c", function()
+				if vim.wo.diff then
+					vim.cmd.normal({ "]c", bang = true })
+				else
+					gitsigns.nav_hunk("next")
+				end
+			end, "n"),
+
+			mapKey("[c", function()
+				if vim.wo.diff then
+					vim.cmd.normal({ "]c", bang = true })
+				else
+					gitsigns.nav_hunk("prev")
+				end
+			end, "n"),
+
+			-- Action
+			mapKey("<leader>hs", gitsigns.stage_hunk, "n"), -- stage/unstage hunk
+			mapKey("<leader>hr", gitsigns.reset_hunk, "n"), -- reset hunk
+			mapKey("<leader>hp", gitsigns.preview_hunk, "n"), -- preview hunk
+			mapKey("<leader>hi", gitsigns.preview_hunk_inline, "n"), -- preview hunk
+			mapKey("<leader>hb", function()
+				gitsigns.blame_line({ full = true })
+			end), -- blame line
+			mapKey("<leader>hd", gitsigns.diffthis), -- diff this
 		})
 	end,
 }
