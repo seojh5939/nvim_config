@@ -14,13 +14,25 @@ return {
 			{
 				"L3MON4D3/LuaSnip",
 				build = "make install_jsregexp",
+				dependencies = { "rafamadriz/friendly-snippets" },
 			},
+			"saadparwaiz1/cmp_luasnip", -- LuaSnip을 nvim-cmp와 연결
 		},
 		event = "InsertEnter",
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+
+			-- VSCode 스타일 스니펫 로드
+			require("luasnip.loaders.from_vscode").lazy_load()
+
 			cmp.setup({
+				completion = {
+					autocomplete = { -- 자동 트리거 설정
+						require("cmp.types").cmp.TriggerEvent.TextChanged,
+					},
+					completeopt = "menu,menuone,noinsert",
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)

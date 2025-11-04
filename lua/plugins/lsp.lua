@@ -38,6 +38,16 @@ return {
 				severity_sort = true, -- 심각도 순으로 정렬
 			})
 
+			-- Completion 트리거 문자 개선
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
+			capabilities.textDocument.completion.completionItem.resolveSupport = {
+				properties = {
+					"documentation",
+					"detail",
+					"additionalTextEdits",
+				},
+			}
+
 			-- TypeScript/JavaScript (auto-import 활성화)
 			vim.lsp.config("ts_ls", {
 				cmd = { "typescript-language-server", "--stdio" },
@@ -52,11 +62,21 @@ return {
 						},
 						suggest = {
 							includeCompletionsForModuleExports = true,
+							includeAutomaticOptionalChainCompletions = true,
+						},
+						preferences = {
+							includeCompletionsForImportStatements = true,
+							includeCompletionsWithInsertText = true,
 						},
 					},
 					javascript = {
 						suggest = {
 							includeCompletionsForModuleExports = true,
+							includeAutomaticOptionalChainCompletions = true,
+						},
+						preferences = {
+							includeCompletionsForImportStatements = true,
+							includeCompletionsWithInsertText = true,
 						},
 					},
 				},
