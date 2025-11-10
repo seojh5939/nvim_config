@@ -16,7 +16,15 @@ return {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls", "kotlin_language_server" },
+				ensure_installed = {
+					"lua_ls",
+					"ts_ls",
+					"kotlin_language_server",
+					"html",
+					"cssls",
+					"emmet_ls",
+					"tailwindcss",
+				},
 			})
 		end,
 	},
@@ -112,11 +120,134 @@ return {
 				capabilities = capabilities,
 			})
 
+			-- HTML LSP
+			vim.lsp.config("html", {
+				cmd = { "vscode-html-language-server", "--stdio" },
+				filetypes = { "html", "htmldjango" },
+				root_markers = { "package.json", ".git" },
+				capabilities = capabilities,
+				init_options = {
+					configurationSection = { "html", "css", "javascript" },
+					embeddedLanguages = {
+						css = true,
+						javascript = true,
+					},
+					provideFormatter = true,
+				},
+				settings = {
+					html = {
+						format = {
+							enable = true,
+							wrapLineLength = 120,
+							wrapAttributes = "auto",
+						},
+						hover = {
+							documentation = true,
+							references = true,
+						},
+						suggest = {
+							html5 = true,
+						},
+						validate = {
+							scripts = true,
+							styles = true,
+						},
+					},
+				},
+			})
+
+			-- CSS LSP
+			vim.lsp.config("cssls", {
+				cmd = { "vscode-css-language-server", "--stdio" },
+				filetypes = { "css", "scss", "less" },
+				root_markers = { "package.json", ".git" },
+				capabilities = capabilities,
+				settings = {
+					css = {
+						validate = true,
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
+					scss = {
+						validate = true,
+					},
+					less = {
+						validate = true,
+					},
+				},
+			})
+
+			-- Emmet LSP (HTML/CSS 스니펫)
+			vim.lsp.config("emmet_ls", {
+				cmd = { "emmet-ls", "--stdio" },
+				filetypes = {
+					"html",
+					"htmldjango",
+					"css",
+					"scss",
+					"less",
+					"javascriptreact",
+					"typescriptreact",
+				},
+				root_markers = { ".git" },
+				capabilities = capabilities,
+				init_options = {
+					html = {
+						options = {
+							["bem.enabled"] = true,
+						},
+					},
+				},
+			})
+
+			-- Tailwind CSS LSP
+			vim.lsp.config("tailwindcss", {
+				cmd = { "tailwindcss-language-server", "--stdio" },
+				filetypes = {
+					"html",
+					"htmldjango",
+					"css",
+					"scss",
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+				},
+				root_markers = {
+					"tailwind.config.js",
+					"tailwind.config.ts",
+					"postcss.config.js",
+					"postcss.config.ts",
+					".git",
+				},
+				capabilities = capabilities,
+				settings = {
+					tailwindCSS = {
+						classAttributes = { "class", "className", "classList", "ngClass" },
+						lint = {
+							cssConflict = "warning",
+							invalidApply = "error",
+							invalidConfigPath = "error",
+							invalidScreen = "error",
+							invalidTailwindDirective = "error",
+							invalidVariant = "error",
+							recommendedVariantOrder = "warning",
+						},
+						validate = true,
+					},
+				},
+			})
+
 			-- LSP 서버 활성화
 			vim.lsp.enable("ts_ls")
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("kotlin_language_server")
 			vim.lsp.enable("sourcekit")
+			vim.lsp.enable("html")
+			vim.lsp.enable("cssls")
+			vim.lsp.enable("emmet_ls")
+			vim.lsp.enable("tailwindcss")
 
 			-- 키맵핑
 			keyMapper("K", vim.lsp.buf.hover)
