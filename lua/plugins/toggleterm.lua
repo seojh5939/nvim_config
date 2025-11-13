@@ -43,11 +43,6 @@ return {
 			newTerm(5)
 		end, "n", { desc = "Toggle Metro Server" })
 
-		-- LLM 실행용(Claude Code or gemini 등..)
-		mapKey("<leader>lm", function()
-			newTerm(10)
-		end, "n", { desc = "Toggle LLM" })
-
 		-- 터미널 토글 키맵 (숫자 + <c-t>로 여러 터미널 관리)
 		mapKey("<c-t>", "<Cmd>exe v:count1 . 'ToggleTerm'<CR>", "n", { desc = "Toggle Terminal" })
 
