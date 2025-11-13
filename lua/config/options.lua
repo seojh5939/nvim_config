@@ -22,6 +22,8 @@ opt.showtabline = 2 -- 항상 탭바 표시 (0: 숨김, 1: 2개 이상일때, 2:
 
 -- etc
 opt.encoding = "UTF-8"
+opt.fileencoding = "utf-8"
+opt.fileencodings = "utf-8,euc-kr,cp949"
 opt.cmdheight = 1
 opt.scrolloff = 10
 opt.mouse:append("a")

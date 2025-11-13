@@ -10,7 +10,7 @@ return {
 		-- 여러 개의 위키를 관리할 수 있으며, 여기서는 가장 기본적인 1개만 설정합니다.
 		vim.g.vimwiki_list = {
 			{
-				path = "~/Vimwiki", -- 위키 파일이 저장될 기본 경로 (홈 디렉토리에 'Vimwiki' 폴더 생성)
+				path = "~/vimwiki", -- 위키 파일이 저장될 기본 경로 (홈 디렉토리에 'vimwiki' 폴더)
 				syntax = "default", -- 마크업 문법 ('default', 'markdown', 'mediawiki' 중 선택)
 				ext = ".wiki", -- 파일 확장자
 			},
