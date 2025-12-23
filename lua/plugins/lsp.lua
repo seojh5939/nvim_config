@@ -108,8 +108,20 @@ return {
 			vim.lsp.config("kotlin_language_server", {
 				cmd = { "kotlin-language-server" },
 				filetypes = { "kotlin" },
-				root_markers = { "settings.gradle", ".git" },
+				root_markers = { "settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", ".git" },
 				capabilities = capabilities,
+				settings = {
+					kotlin = {
+						compiler = {
+							jvm = {
+								target = "1.8",
+							},
+						},
+					},
+				},
+				init_options = {
+					storagePath = vim.fn.stdpath("data") .. "/kotlin-language-server",
+				},
 			})
 
 			-- Swift (시스템 설치 필요)
